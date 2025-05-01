@@ -2,7 +2,7 @@
 
 Blender plugin for importing static mesh formats `.r3m` and `.r3cm` from the MMORPG **Continent of the Ninth (C9)**.
 
-## ✅ Features
+## Features
 
 - Import `.r3m` and `.r3cm` model files
 - Mesh reconstruction with UVs and normals
@@ -11,19 +11,19 @@ Blender plugin for importing static mesh formats `.r3m` and `.r3cm` from the MMO
 - Adjustable scaling and mesh combining
 - Support for specular and normal maps (`_sp`, `_n` suffix)
 
-## 🧰 Requirements
+## Requirements
 
 - Blender 3.6+
 - Game model and texture files extracted from C9
 
-## 🚀 Installation
+## Installation
 
 1. Download the repository or install via `.zip`
 2. Open Blender → `Edit > Preferences > Add-ons > Install`
 3. Select the downloaded `.zip` and enable the addon
 4. Configure paths (R3M folder, texture folder) in add-on settings
 
-## 📂 Usage
+## Usage
 
 Go to:
 
@@ -38,11 +38,11 @@ Adjust import options like:
 
 Textures will be auto-loaded from the specified texture directory.
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This tool is for educational and archival purposes. All trademarks belong to their respective owners.
 
-## 🧑‍💻 Author
+## Author
 
 Developed by [Trolll67](https://github.com/Trolll67)  
 License: GNU GPL v3
