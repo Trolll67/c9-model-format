@@ -27,8 +27,8 @@ Blender plugin for importing static mesh formats `.r3m` and `.r3cm` from the MMO
 
 Go to:
 
-File > Import > C9 Formats > Import R3CM (.r3cm)
-File > Import > C9 Formats > Import R3M (.r3m)
+- File > Import > C9 Formats > Import R3CM (.r3cm)
+- File > Import > C9 Formats > Import R3M (.r3m)
 
 
 Adjust import options like:
