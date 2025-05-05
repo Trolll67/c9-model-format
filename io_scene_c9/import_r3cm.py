@@ -24,6 +24,8 @@ class Mesh():
 		self.normals: list[tuple[float, float, float]] = []
 		self.indices: list[int] = []
 		self.triangles: list[tuple[int, int, int]] = []
+		self.bone_indices: list[int] = []
+		self.bone_weights: list[float] = []
 
 		self.mesh: bpy.types.Mesh = None
 		self.object: bpy.types.Object = None
@@ -273,13 +275,6 @@ class ImportR3CM():
 		print(f'Vertices: {mesh.numberVertices}')
 		print(f'Indices: {mesh.numberIdices}')
 
-		# self.parse_vertices(numVerts)
-		# vertBuff = self.inFile.readBytes(numVerts*40)
-
-		# verts = 12
-		# normal = 12
-		# uv = 8
-
 		# read vertices
 		for i in range(mesh.numberVertices):
 			x = reader.read_float32()
@@ -287,24 +282,30 @@ class ImportR3CM():
 			z = reader.read_float32()
 			mesh.vertices.append((x, y, z))
 
-			uv_x = reader.read_float32()
-			uv_y = reader.read_float32()
-			mesh.uv.append((uv_x, -uv_y))
+			uvx = reader.read_float32()
+			uvy = reader.read_float32()
+			mesh.uv.append((uvx, -uvy))
 
-			n_x = reader.read_float32()
-			n_y = reader.read_float32()
-			n_z = reader.read_float32()
-			mesh.normals.append((n_x, n_y, n_z))
+			nx = reader.read_float32()
+			ny = reader.read_float32()
+			nz = reader.read_float32()
+			mesh.normals.append((nx, ny, nz))
 
-			reader.read_unknown(8)
+			bone_idx_1 = reader.read_uint8()
+			bone_idx_2 = reader.read_uint8()
+			bone_idx_3 = reader.read_uint8()
+			bone_idx_4 = reader.read_uint8()
+			mesh.bone_indices.append((bone_idx_1, bone_idx_2, bone_idx_3, bone_idx_4))
+
+			bone_weight_1: float = reader.read_uint8() / 255.0
+			bone_weight_2: float = reader.read_uint8() / 255.0
+			bone_weight_3: float = reader.read_uint8() / 255.0
+			bone_weight_4: float = reader.read_uint8() / 255.0
+			mesh.bone_weights.append((bone_weight_1, bone_weight_2, bone_weight_3, bone_weight_4))
 
 		# read indices
 		for i in range(mesh.numberIdices):
 			mesh.indices.append(reader.read_uint16())
-
-		# rapi.rpgBindPositionBufferOfs(vertBuff, noesis.RPGEODATA_FLOAT, 40, 0)
-		# rapi.rpgBindNormalBufferOfs(vertBuff, noesis.RPGEODATA_UINT, 40, 20)
-		# rapi.rpgBindUV1BufferOfs(vertBuff, noesis.RPGEODATA_FLOAT, 40, 12)
 
 		mesh.draw()
 
